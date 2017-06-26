@@ -60,7 +60,6 @@ mkdir -p $BUILD_DIR/.apt
 
 for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
   topic "Installing $(basename $DEB)"
-  topic "Directory $($BUILD_DIR)"
   dpkg -x $DEB $BUILD_DIR/.apt/
 done
 
@@ -77,7 +76,8 @@ export PKG_CONFIG_PATH="\$HOME/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:\$HOME/.a
 EOF
 
 export PATH="$BUILD_DIR/.apt/usr/bin:$PATH"
-export LD_LIBRARY_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu:$BUILD_DIR/.apt/usr/lib/i386-linux-gnu:$BUILD_DIR/.apt/usr/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$BUILD_DIR/app/.apt/usr/lib/:$BUILD_DIR/app/.apt/usr/lib/x86_64-linux-gnu:$BUILD_DIR/app/.apt/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
+
 export LIBRARY_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu:$BUILD_DIR/.apt/usr/lib/i386-linux-gnu:$BUILD_DIR/.apt/usr/lib:$LIBRARY_PATH"
 export INCLUDE_PATH="$BUILD_DIR/.apt/usr/include:$INCLUDE_PATH"
 export CPATH="$INCLUDE_PATH"
