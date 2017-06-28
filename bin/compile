@@ -76,6 +76,7 @@ export PKG_CONFIG_PATH="\$HOME/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:\$HOME/.a
 EOF
 
 mkdir -p $BUILD_DIR/.apt/clamav-data
+mkdir -p $BUILD_DIR/.apt/var/run/clamd.scan/
 
 export PATH="$BUILD_DIR/.apt/usr/bin:$PATH"
 export LD_LIBRARY_PATH="/app/.apt/usr/lib/:/app/.apt/usr/lib/x86_64-linux-gnu:/app/.apt/lib/x86_64-linux-gnu"
