@@ -57,6 +57,8 @@ for PACKAGE in $(cat $BUILD_DIR/Aptfile); do
 done
 
 mkdir -p $BUILD_DIR/.apt
+mkdir -p $BUILD_DIR/.apt/clamav-data
+mkdir -p $BUILD_DIR/.apt/var/run/clamd.scan/
 
 for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
   topic "Installing $(basename $DEB)"
@@ -74,9 +76,6 @@ export CPATH="\$INCLUDE_PATH"
 export CPPPATH="\$INCLUDE_PATH"
 export PKG_CONFIG_PATH="\$HOME/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:\$HOME/.apt/usr/lib/i386-linux-gnu/pkgconfig:\$HOME/.apt/usr/lib/pkgconfig:\$PKG_CONFIG_PATH"
 EOF
-
-mkdir -p $BUILD_DIR/.apt/clamav-data
-mkdir -p $BUILD_DIR/.apt/var/run/clamd.scan/
 
 export PATH="$BUILD_DIR/.apt/usr/bin:$PATH"
 export LD_LIBRARY_PATH="/app/.apt/usr/lib/:/app/.apt/usr/lib/x86_64-linux-gnu:/app/.apt/lib/x86_64-linux-gnu"
